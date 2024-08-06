@@ -19,16 +19,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     context.read<ItemBloc>().add(LoadItemsEvent());
+    _scrollController.addListener(_onScroll);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
   }
 
   void _onLogOutPressed() {
     context.read<AuthBloc>().add(
           LogOutEvent(),
         );
+  }
+
+  void _onScroll() {
+    final state = context.read<ItemBloc>().state;
+
+    if (_scrollController.position.atEdge) {
+      bool isBottom = _scrollController.position.pixels != 0;
+      if (isBottom && state is ItemLoadedState && !state.hasReachedMax) {
+        context
+            .read<ItemBloc>()
+            .add(LoadMoreItemsEvent(offset: state.items.length));
+      }
+    }
   }
 
   @override
@@ -100,6 +123,7 @@ class _HomePageState extends State<HomePage> {
                         context.read<ItemBloc>().add(RefreshItemsEvent());
                       },
                       child: GridView.builder(
+                        controller: _scrollController,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,

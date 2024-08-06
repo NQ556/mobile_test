@@ -10,6 +10,7 @@ import 'package:mobile_test/features/home/data/datasources/item_datasource.dart'
 import 'package:mobile_test/features/home/data/repositories/item_repository_impl.dart';
 import 'package:mobile_test/features/home/domain/repositories/item_repository.dart';
 import 'package:mobile_test/features/home/domain/usecases/item_load_items.dart';
+import 'package:mobile_test/features/home/domain/usecases/item_load_more_items.dart';
 import 'package:mobile_test/features/home/presentation/bloc/item_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -81,9 +82,16 @@ void _initItems() {
     ),
   );
 
+  getIt.registerFactory(
+    () => ItemLoadMoreItems(
+      getIt(),
+    ),
+  );
+
   getIt.registerLazySingleton(
     () => ItemBloc(
       itemLoadItems: getIt(),
+      itemLoadMoreItems: getIt(),
     ),
   );
 }

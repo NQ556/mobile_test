@@ -25,8 +25,21 @@ class ItemDatasourceImpl implements ItemDatasource {
   }
 
   @override
-  Future<List<FoodModel>> loadMoreItems({required int offset}) {
-    // TODO: implement loadMoreItems
-    throw UnimplementedError();
+  Future<List<FoodModel>> loadMoreItems({required int offset}) async {
+    try {
+      final String response =
+          await rootBundle.loadString('assets/json/mock_items.json');
+      final data = json.decode(response) as List;
+      final List<FoodModel> items =
+          data.map((e) => FoodModel.fromMap(e)).toList();
+
+      if (offset >= items.length) {
+        return [];
+      }
+
+      return items.skip(offset).take(10).toList();
+    } catch (e) {
+      throw MyException(e.toString());
+    }
   }
 }

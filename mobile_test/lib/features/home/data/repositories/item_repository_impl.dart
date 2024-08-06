@@ -21,8 +21,13 @@ class ItemRepositoryImpl implements ItemRepository {
   }
 
   @override
-  Future<Either<Failure, List<Food>>> loadMoreItems({required int offset}) {
-    // TODO: implement loadMoreItems
-    throw UnimplementedError();
+  Future<Either<Failure, List<Food>>> loadMoreItems(
+      {required int offset}) async {
+    try {
+      final items = await itemDatasource.loadMoreItems(offset: offset);
+      return right(items);
+    } on MyException catch (e) {
+      return left(Failure(e.message));
+    }
   }
 }

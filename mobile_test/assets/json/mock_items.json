@@ -50,13 +50,89 @@
         "image": "assets/images/tonkatsu.png"
     },
     {
+        "id": "0",
+        "name": "Curry",
+        "image": "assets/images/curry.png"
+    },
+    {
+        "id": "1",
+        "name": "Miso",
+        "image": "assets/images/miso.png"
+    },
+    {
+        "id": "2",
+        "name": "Mochi",
+        "image": "assets/images/mochi.png"
+    },
+    {
+        "id": "3",
+        "name": "Okonomiyaki",
+        "image": "assets/images/okonomiyaki.png"
+    },
+    {
+        "id": "4",
+        "name": "Onigiri",
+        "image": "assets/images/onigiri.png"
+    },
+    {
+        "id": "5",
+        "name": "Sashimi",
+        "image": "assets/images/sashimi.png"
+    },
+    {
+        "id": "6",
+        "name": "Sushi",
+        "image": "assets/images/sushi_2.png"
+    },
+    {
+        "id": "7",
+        "name": "Takoyaki",
+        "image": "assets/images/takoyaki.png"
+    },
+    {
+        "id": "8",
+        "name": "Tempura",
+        "image": "assets/images/tempura.png"
+    },
+    {
         "id": "9",
         "name": "Tonkatsu",
         "image": "assets/images/tonkatsu.png"
-    },{
-        "id": "9",
-        "name": "Tonkatsu",
-        "image": "assets/images/tonkatsu.png"
+    },
+    {
+        "id": "0",
+        "name": "Curry",
+        "image": "assets/images/curry.png"
+    },
+    {
+        "id": "1",
+        "name": "Miso",
+        "image": "assets/images/miso.png"
+    },
+    {
+        "id": "2",
+        "name": "Mochi",
+        "image": "assets/images/mochi.png"
+    },
+    {
+        "id": "3",
+        "name": "Okonomiyaki",
+        "image": "assets/images/okonomiyaki.png"
+    },
+    {
+        "id": "4",
+        "name": "Onigiri",
+        "image": "assets/images/onigiri.png"
+    },
+    {
+        "id": "5",
+        "name": "Sashimi",
+        "image": "assets/images/sashimi.png"
+    },
+    {
+        "id": "6",
+        "name": "Sushi",
+        "image": "assets/images/sushi_2.png"
     }
 ]
   
