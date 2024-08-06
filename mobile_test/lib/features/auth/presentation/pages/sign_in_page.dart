@@ -55,9 +55,13 @@ class _SignInPageState extends State<SignInPage> {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthFailureState) {
-              showSnackBar(context, ErrorList.wrongEmailPassword);
+              showSnackBar(context, state.message);
             } else if (state is AuthSuccessState) {
-              Navigator.pushReplacementNamed(context, Routes.homeRoute);
+              Navigator.pushReplacementNamed(
+                context,
+                Routes.homeRoute,
+                arguments: state.user,
+              );
             }
           },
           builder: (context, state) {
@@ -148,7 +152,7 @@ class _SignInPageState extends State<SignInPage> {
 
                   //
                   RoundedButton(
-                    buttonText: StringManager.signIn,
+                    buttonText: StringManager.logIn,
                     backgroundColor: ColorManager.primary,
                     textColor: Colors.white,
                     onTap: _onSignInPressed,

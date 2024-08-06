@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_test/core/common/entities/user.dart';
 import 'package:mobile_test/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_test/features/auth/presentation/pages/sign_in_page.dart';
 
@@ -16,9 +17,16 @@ class RouteGenerator {
         );
 
       case Routes.homeRoute:
-        return MaterialPageRoute(
-          builder: (_) => HomePage(),
-        );
+        if (routeSettings.arguments is User) {
+          final args = routeSettings.arguments as User;
+
+          return MaterialPageRoute(
+            builder: (_) => HomePage(
+              user: args,
+            ),
+          );
+        }
+        return unDefinedRoute();
 
       default:
         return unDefinedRoute();

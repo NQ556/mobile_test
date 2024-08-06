@@ -4,6 +4,7 @@ import 'package:mobile_test/core/utils/route_manager.dart';
 import 'package:mobile_test/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile_test/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_test/features/home/presentation/bloc/item_bloc.dart';
 import 'package:mobile_test/features/home/presentation/pages/home_page.dart';
 import 'package:mobile_test/init_dependencies.dart';
 
@@ -15,6 +16,9 @@ void main() async {
     providers: [
       BlocProvider(
         create: (_) => getIt<AuthBloc>(),
+      ),
+      BlocProvider(
+        create: (_) => getIt<ItemBloc>(),
       ),
     ],
     child: MyApp(),
@@ -44,8 +48,12 @@ class _MyAppState extends State<MyApp> {
         builder: (context, state) {
           if (state is AuthIsNotLoggedInState) {
             return SignInPage();
+          } else if (state is AuthSuccessState) {
+            return HomePage(
+              user: state.user,
+            );
           }
-          return HomePage();
+          return SignInPage();
         },
       ),
       theme: getApplicationTheme(),
